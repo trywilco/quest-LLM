@@ -1,0 +1,76 @@
+id: practical_implications_and_future_of_llms
+learningObjectives:
+  - Reflect on the potential implications and future directions of LLMs.
+hints:
+  - Consider LLMs in the context of automation and human-AI interaction.
+  - Reflect on balance between technological growth and ethical use.
+  - "Chapter 12 of 'Hands-On Large Language Models' discusses the future of language models"
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: |
+              We've learned so much about how LLMs work and their current applications. Now let's think about where this technology is heading, particularly around accessibility and democratization.
+              Chapter 12 of "Hands-On Large Language Models" reveals a fascinating development: parameter-efficient fine-tuning techniques like LoRA and QLoRA are dramatically reducing the barriers to LLM customization. As the chapter demonstrates, QLoRA can reduce memory requirements from ~4GB to ~1GB while maintaining performance, and LoRA can compress massive 150-million parameter matrices into just 197K parameters per block.
+              The chapter shows how a 175B model like GPT-3 would have 150 million parameters per block, but with rank-8 LoRA adaptation, this drops to just 197K parameters per block - major savings in speed, storage, and compute.
+              This got me thinking: these dramatic efficiency gains are fundamentally changing who can participate in AI development. When you can reduce memory requirements from ~4GB to ~1GB and compress 150-million parameter matrices to just 197K parameters per block, suddenly LLM customization becomes accessible to so many more people.
+              What do you think this means for the future of the field? How do these efficiency gains change who gets to be part of AI development, and what opportunities or concerns does this create?
+              I'd love to hear your thoughts on this, especially drawing from what you've learned in the chapter!
+trigger:
+  type: user_message
+  params:
+    person: lucca
+  flowNode:
+    do:
+      - actionId: parse_user_response
+        name: user_answer
+        params:
+          prompt: |
+            Please evaluate the user's answer about the practical implications of LoRA and QLoRA techniques.
+
+            The user should demonstrate understanding that these techniques make AI development more accessible by reducing computational requirements, which has both opportunities and potential concerns.
+
+            # Assessment Criteria
+
+            - Look for basic understanding that these techniques make AI development more accessible
+            - Accept any mention of either opportunities OR concerns (doesn't need both)
+            - Be flexible and focus on the core concept rather than technical details
+            - A single sentence showing understanding is perfectly acceptable
+
+            # Response Guidelines:
+
+            - If the user shows basic understanding of the accessibility impact, return 'correct: true'
+            - If the answer is completely off-topic or shows no understanding, return 'correct: false'
+            - DO NOT reveal the specific expected answer - instead encourage them to think about how making AI more accessible might impact society
+            - Be very generous in accepting different ways of expressing the same idea
+
+            # Tone and Style:
+
+            - Use friendly and encouraging language
+            - Be empathetic to the user's learning process
+            - Focus on helping the user learn and understand the material
+          schema:
+            correct: boolean
+            reply: string
+    if:
+      conditions:
+        - conditionId: is_truthy
+          params:
+            value: ${outputs.user_answer.value.correct}
+      then:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_answer.value.reply}
+          - actionId: finish_step
+      else:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_answer.value.reply}

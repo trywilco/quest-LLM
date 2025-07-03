@@ -1,0 +1,71 @@
+id: tokenization_exploration
+learningObjectives:
+  - Understand tokenization as a crucial preprocessing step for Large Language Models.
+hints: []
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Before we dive deeper, let's start with the basics—tokenization.
+          - text: Tokenization is a key preprocessing step that converts text into small, manageable parts—tokens—so that language models can handle them effectively.
+          - text: Different tokenizers might convert the same sentence into varied forms of tokens, which influences how the model interprets the input.
+          - text: We've already given you code to help you with tokenization - open the `tokenizer.ipynb` notebook and use it to explore different tokenizers.
+          - text: |
+              :instruction[Using the GPT-2 tokenizer, find out how many tokens this sentence produces: "Artificial intelligence is transforming the modern world."]
+trigger:
+  type: user_message
+  params:
+    person: lucca
+  flowNode:
+    do:
+      - actionId: parse_user_response
+        name: user_token_count
+        params:
+          prompt: |
+            Please evaluate the user's answer for the tokenization challenge.
+
+            The user should respond with the number of tokens that the sentence 'Artificial intelligence is transforming the modern world.' produces when tokenized with GPT-2. 
+
+            The correct answer is 9 tokens.
+
+            # Assessment Criteria
+            - Look for the number 9 in their response
+            - Accept variations like "9", "nine", "9 tokens", etc.
+            - Focus on whether they identified the correct token count
+
+            # Response Guidelines:
+            - If the user provides the correct answer (9), return 'correct: true'
+            - Provide a positive message congratulating them on understanding tokenization
+            - If the user provides an incorrect number, return 'correct: false'  
+            - DO NOT reveal the correct answer - instead encourage them to try again using the tokenizer notebook
+            - Suggest they double-check their tokenization process
+
+            # Tone and Style:
+            - Use friendly and encouraging language
+            - Be supportive of their learning process
+            - Focus on helping them understand tokenization concepts
+          schema:
+            correct: boolean
+            reply: string
+    if:
+      conditions:
+        - conditionId: is_truthy
+          params:
+            value: ${outputs.user_token_count.value.correct}
+      then:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_token_count.value.reply}
+          - actionId: finish_step
+      else:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_token_count.value.reply}

@@ -1,0 +1,26 @@
+id: application_spectrum_of_llms
+learningObjectives:
+  - Discover the variety of applications where LLMs are making a significant impact.
+hints:
+  - "Chapter 6 of 'Hands-On Large Language Models' explores practical LLM applications"
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Now that we understand how LLMs work, let's explore where they're making waves in the real world!
+          - text: These models aren't just academic curiosities - they're powering tools and services you probably use every day.
+          - text: From the chatbots that help you with customer service to the writing assistants that help authors craft their stories, LLMs are everywhere.
+          - text: They're revolutionizing how businesses analyze data, how students learn, and how creative professionals work.
+          - text: In healthcare, they're helping doctors write reports. In law, they're assisting with research. In education, they're personalizing learning experiences.
+          - text: The versatility is what makes them so exciting - one model architecture, countless applications!
+          - text: Ready to discover how LLMs are transforming entire industries? Let's explore this amazing landscape together!
+    - actionId: ready_message
+      params:
+        person: lucca
+trigger:
+  type: user_ready_response
+  flowNode:
+    do:
+      - actionId: finish_step

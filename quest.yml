@@ -1,0 +1,37 @@
+id: large-language-models-unlocked
+title: Large Language Models Unlocked
+subtitle: Discover the remarkable capabilities of large language models (LLMs)
+  in this dynamic quest inspired by "Hands-On Large Language Models."
+description: Discover the remarkable capabilities of large language models
+  (LLMs) in this dynamic quest inspired by "Hands-On Large Language Models." We
+  will explore the architecture, training paradigms, and diverse applications of
+  LLMs. Whether it's building sophisticated chatbots, implementing semantic
+  search, or leveraging frameworks like LangChain, you'll learn how LLMs
+  revolutionize AI and industries. By the end of this journey, you'll understand
+  how to leverage LLMs creatively, mastering their potential and limitations.
+  Perfect for data scientists and AI enthusiasts, this quest will heighten your
+  appreciation of language AI.
+level: intermediate
+duration: 1
+skills:
+  - artificial intelligence
+  - machine learning
+  - natural language processing
+  - semantic search
+  - chatbot development
+  - langchain
+steps:
+  - select_framework
+  - understanding_large_language_models
+  - codespace_start
+  - tokenization_exploration
+  - the_architecture_of_llms
+  - from_pretraining_to_fine_tuning
+  - simple_word_prediction
+  - application_spectrum_of_llms
+  - quiz_langchain_chains
+  - question_answering_system
+  - practical_implications_and_future_of_llms
+  - recap_and_takeaways
+type: MODULE
+repository: https://github.com/trywilco/empty-starter-python

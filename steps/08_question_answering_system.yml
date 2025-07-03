@@ -1,0 +1,76 @@
+id: question_answering_system
+learningObjectives:
+  - Build a complete question-answering system using Wikipedia API and pre-trained LLMs.
+hints:
+  - "Explore the Transformers QA Pipeline documentation for implementation examples"
+  - "Chapter 10 of 'Hands-On Large Language Models' covers developing Q&A systems with LLMs"
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Let's put our LLM knowledge to work by building something really practical - your own question-answering system from scratch!
+          - text: You'll learn how to combine Wikipedia's API with pre-trained BERT models to create a system that can read entire documents and answer questions about them.
+          - text: This is one of the most impressive capabilities of modern language models - their ability to understand context and extract precise information from vast amounts of text.
+          - text: You'll build a complete pipeline that fetches Wikipedia pages, splits them into chunks, and uses BERT to find the best answers to questions.
+          - text: Open the `question_answering.ipynb` notebook and follow the step-by-step guide to build your Q&A system from the ground up.
+          - text: By the end, you'll have created a system that can process the entire Space Race Wikipedia page and answer complex questions about this fascinating period in history.
+          - text: |
+              Open the notebook and build your Q&A system step by step. Once you've built it, use the code to find out :instruction[what is the name of the first artificial satellite launched by the Soviet Union?] Test it with the Wikipedia page for "Race to space" and tell me what answer your system gives.]
+trigger:
+  type: user_message
+  params:
+    person: lucca
+  flowNode:
+    do:
+      - actionId: parse_user_response
+        name: user_qa_response
+        params:
+          prompt: |
+            Please evaluate the user's response about their question-answering system.
+
+            The user should have built a Q&A system and used it to find the name of the first artificial satellite launched by the Soviet Union. The correct answer is "Sputnik" or "Sputnik 1".
+
+            # Assessment Criteria
+            - Look for any mention of "Sputnik" in their response (case-insensitive)
+            - Accept variations like "Sputnik", "Sputnik 1", "Sputnik satellite", "the Sputnik", etc.
+            - Also accept if they describe running the system and getting any reasonable answer
+            - Focus on whether they built and used their Q&A system successfully
+
+            # Response Guidelines:
+            - If the user mentions "Sputnik" or shows they built and ran their system, return 'correct: true'
+            - Provide an encouraging message about successfully building their Q&A system
+            - Be generous with acceptance - the goal is learning, not perfect accuracy
+            - If they seem to have tried but got a different answer, still return 'correct: true' and encourage them to double-check their system or try different search terms
+            - If they provide an incorrect answer or haven't built the system yet, return 'correct: false'
+            - DO NOT reveal the expected answer in the response to the user
+            - Guide them back to the notebook and encourage them to complete the Q&A system build
+
+            # Tone and Style:
+            - Use friendly and encouraging language
+            - Be supportive of their learning process
+            - Focus on the achievement of building a working system
+          schema:
+            correct: boolean
+            reply: string
+    if:
+      conditions:
+        - conditionId: is_truthy
+          params:
+            value: ${outputs.user_qa_response.value.correct}
+      then:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_qa_response.value.reply}
+          - actionId: finish_step
+      else:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_qa_response.value.reply}

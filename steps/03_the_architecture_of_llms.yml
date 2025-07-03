@@ -1,0 +1,73 @@
+id: the_architecture_of_llms
+learningObjectives:
+  - Reflect on how the Transformer architecture has changed the development of language models.
+hints:
+  - LLMs don't generate entire responses at once - they work token by token
+  - There's a specific machine learning term for models that use their own previous outputs as inputs
+  - Look for the section in Chapter 3 that explains the step-by-step text generation process
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Now that we've covered the basics, let's dive into something truly revolutionary - the Transformer architecture! This is the beating heart of modern LLMs and what makes them so powerful.
+          - text: One of the most important concepts to understand about how LLMs actually work is how they generate text. Many people think LLMs generate entire responses all at once, but that's not how it works at all!
+          - text: The reality is much more fascinating. When you ask an LLM to write something, it doesn't generate the whole response in one go. Instead, it follows a very specific process that has a special name in machine learning.
+          - text: LLMs generate text one token at a time, and they use their previously generated tokens to help predict the next token. :instruction[What is the specific term used in machine learning to describe models that consume their earlier predictions to make later predictions?]
+          - text: "Take your time and think about this! You can find the answer in Chapter 3 of 'Hands-On Large Language Models' - look for the section that explains how text generation actually works step by step."
+trigger:
+  type: user_message
+  params:
+    person: lucca
+  flowNode:
+    do:
+      - actionId: parse_user_response
+        name: user_architecture_response
+        params:
+          prompt: |
+            Please evaluate the user's response about autoregressive models.
+
+            The user should identify the term "autoregressive" as the specific machine learning term for models that consume their earlier predictions to make later predictions.
+
+            The correct answer is "autoregressive" or "autoregressive models."
+
+            # Assessment Criteria
+            - Look for the word "autoregressive" in their response
+            - Accept variations like "autoregressive models", "auto-regressive", etc.
+            - The answer should demonstrate understanding that this describes models using previous outputs as inputs
+
+            # Response Guidelines:
+            - If the user provides "autoregressive" or similar correct variations, return 'correct: true'
+            - Congratulate them and explain why this concept is so important for understanding LLMs
+            - If they provide an incorrect answer, return 'correct: false'
+            - DO NOT reveal the correct answer - instead guide them back to Chapter 3 and hint about the specific section on token-by-token generation
+            - Encourage them to look for the technical term that describes this behavior without giving it away
+
+            # Tone and Style:
+            - Use friendly and encouraging language
+            - Be supportive of their learning process
+            - Help them understand why autoregressive generation is fundamental to how LLMs work
+          schema:
+            correct: boolean
+            reply: string
+    if:
+      conditions:
+        - conditionId: is_truthy
+          params:
+            value: ${outputs.user_architecture_response.value.correct}
+      then:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_architecture_response.value.reply}
+          - actionId: finish_step
+      else:
+        do:
+          - actionId: bot_message
+            params:
+              person: lucca
+              messages:
+                - text: ${outputs.user_architecture_response.value.reply}

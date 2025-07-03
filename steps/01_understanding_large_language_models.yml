@@ -1,0 +1,40 @@
+id: understanding_large_language_models
+learningObjectives:
+  - Gain an overview of what Large Language Models (LLMs) are and their
+    significance in AI.
+hints: []
+startFlow:
+  do:
+    # refresh codespace after we added files
+    - actionId: recreate_codespace
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text:
+              Welcome to the exciting world of Large Language Models, where machines
+              speak our language! This quest is based on the "Hands-On Large Language Models"
+              book by Jay Alammar and Maarten Grootendorst.
+          - text: "![](${book.png})"
+          - text:
+              Whether it's creating chatbots or building search engines, these models,
+              often referred to as LLMs, have transformed AI, enabling machines to
+              understand and generate human-like language. LLMs are making waves
+              across numerous industries.
+          - text:
+              We'll begin by understanding the scope and utility of these models in
+              real-world applications.
+          - text: Large Language Models (LLMs) are complex AI systems designed to understand, generate, and even translate human language.
+          - text: Their primary strength lies in their ability to predict what comes next in a sequence of text, similar to the way a brain might process language.
+          - text: LLMs underpin technologies such as chatbots, automated summarizers, and language translation tools.
+          - text: The scope of LLMs extends far beyond what's initially apparent—transforming industries by automating tasks and generating human-like text.
+          - text: This is just the beginning of our incredible journey together! Are you ready to dive deeper and unlock the secrets of Large Language Models?
+    - actionId: ready_message
+      params:
+        person: lucca
+          
+trigger:
+  type: user_ready_response
+  flowNode:
+    do:
+      - actionId: finish_step

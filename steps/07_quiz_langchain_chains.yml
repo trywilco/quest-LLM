@@ -1,0 +1,68 @@
+id: quiz_langchain_chains
+learningObjectives:
+  - Evaluate understanding of how LangChain chains enhance LLM capabilities by connecting components for complex workflows
+hints:
+  - Think about how LangChain components work together to create more powerful applications.
+  - "Chapter 7 of 'Hands-On Large Language Models' explores how chains enable complex LLM workflows"
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Now let's put our knowledge to the test with a quiz.
+          - text: We've explored the fundamentals of LLMs and now it's time to dive into practical applications. As Chapter 7 of 'Hands-On Large Language Models' shows us, frameworks like LangChain are revolutionizing how we build with LLMs.
+          - text: So here's your challenge - How do chains in LangChain enhance the capabilities of large language models (LLMs)?
+    - actionId: quiz_message
+      name: quiz
+      params:
+        person: lucca
+        options:
+          - By storing and retrieving entire conversation histories
+          - By quantizing the models to optimize memory usage
+          - By using another LLM to summarize past interactions
+          - By enabling the connection of LLMs with additional tools or prompts for complex tasks
+trigger:
+  type: chat_form_submitted
+  flowNode:
+    switch:
+      key: ${formSubmission}
+      cases:
+        A:
+          do:
+            - actionId: bot_message
+              params:
+                person: lucca
+                messages:
+                  - text: Not quite. Storing conversation histories is related to memory, not chains. Chains are about connecting different components together.
+            - actionId: replay_action
+              params:
+                actionName: quiz
+        B:
+          do:
+            - actionId: bot_message
+              params:
+                person: lucca
+                messages:
+                  - text: Not quite. Quantization deals with memory efficiency, not extending capabilities through chains. Think about how chains connect different components.
+            - actionId: replay_action
+              params:
+                actionName: quiz
+        C:
+          do:
+            - actionId: bot_message
+              params:
+                person: lucca
+                messages:
+                  - text: Not quite. Summarizing interactions is a feature of memory techniques, not chains. Chains are about linking components together.
+            - actionId: replay_action
+              params:
+                actionName: quiz
+        D:
+          do:
+            - actionId: bot_message
+              params:
+                person: lucca
+                messages:
+                  - text: Exactly! Chains in LangChain allow LLMs to connect with tools, prompts, and other components to handle complex tasks that would be difficult for a single LLM call to accomplish.
+            - actionId: finish_step

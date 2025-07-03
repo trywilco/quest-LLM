@@ -1,0 +1,25 @@
+id: from_pretraining_to_fine_tuning
+learningObjectives:
+  - Understand the training stages of LLMs, emphasizing pretraining and fine-tuning.
+hints:
+  - "Chapter 4 of 'Hands-On Large Language Models' covers pretraining and fine-tuning in detail"
+startFlow:
+  do:
+    - actionId: bot_message
+      params:
+        person: lucca
+        messages:
+          - text: Let's delve into the fascinating life cycle of Large Language Models - a journey through pretraining and fine-tuning!
+          - text: Think of pretraining like giving an AI a comprehensive education. We feed it vast amounts of text data so it learns the patterns, structures, and nuances of human language.
+          - text: Then comes fine-tuning - this is where we take that broadly educated model and teach it to excel at specific tasks, like a student specializing in their field of expertise.
+          - text: It's quite remarkable how this two-stage process transforms a general language understanding into targeted, practical intelligence.
+          - text: The beauty is in how pretraining gives the model its foundation, while fine-tuning makes it truly useful for real-world applications.
+          - text: Ready to explore how raw computational potential becomes specialized intelligence? Let's dive in!
+    - actionId: ready_message
+      params:
+        person: lucca
+trigger:
+  type: user_ready_response
+  flowNode:
+    do:
+      - actionId: finish_step
