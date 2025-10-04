@@ -17,7 +17,7 @@ startFlow:
           - text: Open the `question_answering.ipynb` notebook and follow the step-by-step guide to build your Q&A system from the ground up.
           - text: By the end, you'll have created a system that can process the entire Space Race Wikipedia page and answer complex questions about this fascinating period in history.
           - text: |
-              Open the notebook and build your Q&A system step by step. Once you've built it, use the code to find out :instruction[what is the name of the first artificial satellite launched by the Soviet Union?] Test it with the Wikipedia page for "Race to space" and tell me what answer your system gives.]
+              Open the notebook and build your Q&A system step by step. Once you've built it, use the code to find out :instruction[what is the name of the first artificial satellite launched by the Soviet Union?] Test it with the Wikipedia page for "Race to space" and tell me what answer your system gives.
 trigger:
   type: user_message
   params:
