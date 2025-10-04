@@ -23,9 +23,9 @@ startFlow:
 
 # should not get there
 trigger:
-  type: chat_form_submitted
+  type: user_message
   params:
-    formId: backend_message_form
+    person: lucca
   flowNode:
     do:
       - actionId: finish_step
