@@ -8,6 +8,7 @@ skills:
   - artificial intelligence
   - langchain
 steps:
+  - get_nickname
   - select_framework
   - understanding_large_language_models
   - codespace_start
@@ -20,6 +21,5 @@ steps:
   - question_answering_system
   - practical_implications_and_future_of_llms
   - recap_and_takeaways
-  - get_nickname
 type: MODULE
 repository: https://github.com/trywilco/empty-starter-python
