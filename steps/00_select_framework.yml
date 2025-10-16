@@ -19,6 +19,10 @@ startFlow:
     - actionId: github_commit_file
       params:
         file: "${question_answering.ipynb}"
+    - actionId: update_user_props
+      params:
+        field: "nickname"
+        value: "Orielly User"
     - actionId: finish_step
 
 # should not get there
