@@ -6,10 +6,6 @@ level: intermediate
 duration: 1
 skills:
   - artificial intelligence
-  - machine learning
-  - natural language processing
-  - semantic search
-  - chatbot development
   - langchain
 steps:
   - select_framework
